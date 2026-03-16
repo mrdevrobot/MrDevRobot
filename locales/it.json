@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog"
+  },
+  "footer": {
+    "text": "© {year} MrDevRobot. Tutti i diritti riservati."
+  },
+  "hero": {
+    "title": "Benvenuto su MrDevRobot",
+    "subtitle": "Articoli su sviluppo software, Vue, Nuxt e molto altro.",
+    "cta": "Leggi il blog"
+  },
+  "article": {
+    "date": "Data",
+    "tags": "Tag",
+    "readMore": "Leggi di più",
+    "latestArticles": "Ultimi articoli",
+    "allArticles": "Tutti gli articoli",
+    "backToBlog": "← Torna al blog",
+    "noArticles": "Nessun articolo trovato."
+  }
+}

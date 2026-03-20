@@ -26,31 +26,30 @@ const availableLocales = computed(() =>
 <style scoped>
 .language-switcher {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.2rem;
   align-items: center;
 }
 
 .language-switcher__btn {
-  padding: 0.25rem 0.6rem;
-  border-radius: 0.375rem;
-  font-size: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.67rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #6b7280;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.45rem;
+  color: #4ade80;
+  opacity: 0.45;
   text-decoration: none;
   border: 1px solid transparent;
   transition: all 0.15s ease;
 }
 
 .language-switcher__btn:hover {
-  color: #16a34a;
-  border-color: #bbf7d0;
-  background: #f0fdf4;
+  opacity: 0.9;
+  border-color: rgba(74, 222, 128, 0.3);
 }
 
 .language-switcher__btn--active {
-  color: #16a34a;
-  background: #f0fdf4;
-  border-color: #86efac;
+  opacity: 1;
+  border-color: rgba(74, 222, 128, 0.45);
 }
 </style>

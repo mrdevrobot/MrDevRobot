@@ -4,12 +4,21 @@
     "blog": "Blog"
   },
   "footer": {
-    "text": "© {year} MrDevRobot. All rights reserved."
+    "text": "© {year} Luca Fabbri · MrDevRobot",
+    "tagline": "Tech Lead · .NET · Clean Architecture · DDD · Distributed Systems"
   },
   "hero": {
-    "title": "Welcome to MrDevRobot",
-    "subtitle": "Articles about software development, Vue, Nuxt and much more.",
+    "title": "Luca Fabbri",
+    "subtitle": "Tech Lead at Zucchetti Hospitality  ·  .NET  ·  Open Source  ·  class of '84",
     "cta": "Read the blog"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Computer Engineer, born in 1984 in Rimini and now based in San Donà di Piave, Veneto. Graduated in 2010, I currently work as Tech Lead at Zucchetti Hospitality Srl, designing and building complex distributed software systems.",
+    "expertise": "My focus: .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded, real-time distributed systems.",
+    "xedotnet": "Active member of XeDotNet, the Veneto .NET developer community.",
+    "opensource": "Open Source Projects",
+    "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working as a Tech Lead."
   },
   "article": {
     "date": "Date",
@@ -19,5 +28,14 @@
     "allArticles": "All articles",
     "backToBlog": "← Back to blog",
     "noArticles": "No articles found."
+  },
+  "seo": {
+    "homeDescription": "Tech Lead and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
+    "blogTitle": "Blog",
+    "blogDescription": "Articles on .NET, Clean Architecture, Domain-Driven Design, Distributed Systems and software engineering by Luca Fabbri, Tech Lead at Zucchetti Hospitality."
+  },
+  "fun": {
+    "title": "Terminal Crawler",
+    "desc": "A tiny dungeon crawler in the spirit of retro terminal games. Use W A S D to move, fight off Null Pointers and Race Conditions, collect gold, descend 10 floors. Your progress is saved locally."
   }
 }

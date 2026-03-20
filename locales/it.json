@@ -4,12 +4,21 @@
     "blog": "Blog"
   },
   "footer": {
-    "text": "© {year} MrDevRobot. Tutti i diritti riservati."
+    "text": "© {year} Luca Fabbri · MrDevRobot",
+    "tagline": "Tech Lead · .NET · Clean Architecture · DDD · Sistemi Distribuiti"
   },
   "hero": {
-    "title": "Benvenuto su MrDevRobot",
-    "subtitle": "Articoli su sviluppo software, Vue, Nuxt e molto altro.",
+    "title": "Luca Fabbri",
+    "subtitle": "Tech Lead at Zucchetti Hospitality  ·  .NET  ·  Open Source  ·  classe dell'84",
     "cta": "Leggi il blog"
+  },
+  "about": {
+    "title": "Su di me",
+    "intro": "Ingegnere Informatico, nato nel 1984 a Rimini e ora residente a San Donà di Piave, in Veneto. Laureato nel 2010, lavoro come Tech Lead in Zucchetti Hospitality Srl, dove progetto e sviluppo sistemi software distribuiti complessi.",
+    "expertise": "Focus su .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded e sistemi distribuiti real-time.",
+    "xedotnet": "Membro attivo di XeDotNet, il gruppo sviluppatori .NET del Veneto.",
+    "opensource": "Progetti Open Source",
+    "blog_description": "Questo blog è scritto interamente in inglese: architectural decision records, deep-dive tecnici e riflessioni dal lavoro quotidiano come Tech Lead."
   },
   "article": {
     "date": "Data",
@@ -19,5 +28,14 @@
     "allArticles": "Tutti gli articoli",
     "backToBlog": "← Torna al blog",
     "noArticles": "Nessun articolo trovato."
+  },
+  "seo": {
+    "homeDescription": "Tech Lead e ingegnere .NET a San Donà di Piave, Veneto. Clean Architecture, DDD, Sistemi Distribuiti e Open Source. Autore di BLite, EntglDb, Concordia.",
+    "blogTitle": "Blog",
+    "blogDescription": "Articoli su .NET, Clean Architecture, Domain-Driven Design, Sistemi Distribuiti e ingegneria del software di Luca Fabbri, Tech Lead presso Zucchetti Hospitality."
+  },
+  "fun": {
+    "title": "Terminal Crawler",
+    "desc": "Un mini dungeon crawler in stile terminale retro. Usa W A S D per muoverti, combatti Null Pointer e Race Condition, raccogli oro e scendi 10 piani. I progressi sono salvati localmente."
   }
 }

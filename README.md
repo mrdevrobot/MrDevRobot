@@ -1,6 +1,6 @@
 # MrDevRobot Blog
 
-Blog personale di [MrDevRobot](https://mrdevrobot.com) — articoli su sviluppo software, Vue, Nuxt e molto altro.
+Blog personale di [MrDevRobot](https://www.mrdevrobot.com) — articoli su sviluppo software, Vue, Nuxt e molto altro.
 
 Built with [Nuxt 3](https://nuxt.com) + [Nuxt Content](https://content.nuxt.com) — sito statico con supporto multilingua (Italiano 🇮🇹 / English 🇬🇧).
 
@@ -80,8 +80,8 @@ Your content here...
 ```
 
 The filename (without `.md`) becomes the article slug:
-- `content/it/blog/my-article.md` → `https://mrdevrobot.com/blog/my-article`
-- `content/en/blog/my-article.md` → `https://mrdevrobot.com/en/blog/my-article`
+- `content/it/blog/my-article.md` → `https://www.mrdevrobot.com/blog/my-article`
+- `content/en/blog/my-article.md` → `https://www.mrdevrobot.com/en/blog/my-article`
 
 ---
 
@@ -102,5 +102,5 @@ The language switcher in the header lets visitors toggle between **IT** and **EN
 
 ## 🌐 Domain
 
-The site is deployed at [mrdevrobot.com](https://mrdevrobot.com). The `public/CNAME` file configures the custom domain for GitHub Pages.
+The site is deployed at [mrdevrobot.com](https://www.mrdevrobot.com). The `public/CNAME` file configures the custom domain for GitHub Pages.
 

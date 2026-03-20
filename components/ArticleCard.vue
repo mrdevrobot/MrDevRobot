@@ -23,7 +23,7 @@
         :to="localePath(`/blog/${article._path?.split('/').pop()}`)"
         class="article-card__read-more"
       >
-        {{ $t('article.readMore') }} →
+        &gt; {{ $t('article.readMore') }}
       </NuxtLink>
     </div>
   </article>
@@ -56,19 +56,18 @@ function formatDate(dateStr: string): string {
 <style scoped>
 .article-card {
   background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.75rem;
+  border: 1px solid #e7e2d4;
+  border-left: 3px solid #4ade80;
   overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.15s ease;
 }
 
 .article-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  border-left-color: #22c55e;
 }
 
 .article-card__content {
-  padding: 1.5rem;
+  padding: 1.25rem 1.25rem 1.25rem 1.1rem;
 }
 
 .article-card__meta {
@@ -76,38 +75,41 @@ function formatDate(dateStr: string): string {
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
 }
 
 .article-card__date {
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: #78716c;
+  letter-spacing: 0.04em;
 }
 
 .article-card__tags {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .article-card__tag {
-  font-size: 0.75rem;
-  background: #f0fdf4;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.67rem;
   color: #16a34a;
-  border: 1px solid #bbf7d0;
-  padding: 0.125rem 0.5rem;
-  border-radius: 9999px;
+  border: 1px solid #86efac;
+  padding: 0.1rem 0.45rem;
+  letter-spacing: 0.03em;
 }
 
 .article-card__title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   margin: 0 0 0.5rem;
-  line-height: 1.4;
+  line-height: 1.45;
+  font-family: 'Space Mono', monospace;
 }
 
 .article-card__title a {
-  color: #111827;
+  color: #0c0e0c;
   text-decoration: none;
   transition: color 0.15s ease;
 }
@@ -117,22 +119,23 @@ function formatDate(dateStr: string): string {
 }
 
 .article-card__description {
-  color: #4b5563;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  color: #57534e;
+  font-size: 0.92rem;
+  line-height: 1.65;
   margin: 0 0 1rem;
 }
 
 .article-card__read-more {
   display: inline-block;
+  font-family: 'Space Mono', monospace;
   color: #16a34a;
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   text-decoration: none;
+  letter-spacing: 0.04em;
   transition: color 0.15s ease;
 }
 
 .article-card__read-more:hover {
-  color: #15803d;
+  color: #4ade80;
 }
 </style>

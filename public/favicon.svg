@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark terminal background -->
+  <rect width="32" height="32" rx="5" fill="#0c0e0c"/>
+
+  <!-- Subtle scanline overlay -->
+  <rect width="32" height="1" y="8"  fill="#4ade80" opacity="0.04"/>
+  <rect width="32" height="1" y="12" fill="#4ade80" opacity="0.04"/>
+  <rect width="32" height="1" y="16" fill="#4ade80" opacity="0.04"/>
+  <rect width="32" height="1" y="20" fill="#4ade80" opacity="0.04"/>
+  <rect width="32" height="1" y="24" fill="#4ade80" opacity="0.04"/>
+
+  <!-- > chevron prompt -->
+  <polyline
+    points="5,10 13,16 5,22"
+    fill="none"
+    stroke="#4ade80"
+    stroke-width="2.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#glow)"
+  />
+
+  <!-- _ cursor block -->
+  <rect
+    x="16" y="21" width="11" height="2.8"
+    rx="1.4"
+    fill="#4ade80"
+    filter="url(#glow)"
+  />
+</svg>

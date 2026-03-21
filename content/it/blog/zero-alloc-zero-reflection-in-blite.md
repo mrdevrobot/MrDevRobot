@@ -1,6 +1,6 @@
 ---
 title: "Zero Alloc, Zero Reflection: Come BLite Gestisce Oggetti Complessi ad Alta Velocità"
-date: "2026-03-21"
+date: "2026-02-17"
 description: "Due sfide ingegneristiche in BLite: supportare campi privati, costruttori privati e collection annidate senza reflection a runtime — e gestire i buffer di serializzazione senza pressione sul GC."
 tags: [".net", "blite", "performance", "reflection", "span", "source-generators", "memory", "open-source"]
 image: "/avatar.jpg"

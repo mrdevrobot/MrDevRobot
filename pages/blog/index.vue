@@ -18,9 +18,14 @@
 const { locale, t } = useI18n()
 const siteUrl = 'https://mrdevrobot.com'
 
+const today = new Date().toISOString().split('T')[0]
+
 const { data: articles } = await useAsyncData(
   `blog-articles-${locale.value}`,
-  () => queryContent(`/${locale.value}/blog`).sort({ date: -1 }).find()
+  () => queryContent(`/${locale.value}/blog`)
+    .where({ date: { $lte: today } })
+    .sort({ date: -1 })
+    .find()
 )
 
 useSeoMeta({

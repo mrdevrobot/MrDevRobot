@@ -1,7 +1,7 @@
 ---
 title: "C-BSON: Il Formato Compresso che Ho Costruito in BLite"
 description: "Perché ho sostituito i nomi di campo null-terminated di BSON con ID interi a 2 byte, come funziona il sistema di dizionario, e un'analisi onesta dei trade-off."
-date: "2026-03-20"
+date: "2026-02-10"
 tags: [".net", "blite", "bson", "embedded-database", "performance", "open-source", "storage-engine"]
 ---
 
@@ -17,7 +17,7 @@ Avviso: questo non sarà un discorso trionfale. Mostrerò codice reale, spiegher
 
 [BSON](https://bsonspec.org/) è il formato wire di MongoDB. È un design ragionevole: una rappresentazione binaria compatta di documenti simili a JSON. Ogni elemento di un documento BSON è serializzato in questo modo:
 
-```
+``` bash
 [1 byte: tipo] [N byte: nome campo come UTF-8 null-terminated] [N byte: valore]
 ```
 
@@ -42,7 +42,7 @@ C-BSON sostituisce il nome di campo UTF-8 null-terminated con un **ID campo `ush
 
 Il formato wire di ogni elemento diventa:
 
-```
+``` bash
 [1 byte: tipo] [2 byte: ID campo come ushort little-endian] [N byte: valore]
 ```
 

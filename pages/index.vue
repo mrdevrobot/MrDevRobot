@@ -91,7 +91,11 @@ const siteUrl = 'https://mrdevrobot.com'
 
 const { data: articles } = await useAsyncData(
   `home-articles-${locale.value}`,
-  () => queryContent(`/${locale.value}/blog`).sort({ date: -1 }).limit(3).find()
+  () => queryContent(`/${locale.value}/blog`)
+    .where({ date: { $lte: new Date().toISOString().split('T')[0] } })
+    .sort({ date: -1 })
+    .limit(3)
+    .find()
 )
 
 useSeoMeta({

@@ -27,7 +27,13 @@
     "latestArticles": "Latest articles",
     "allArticles": "All articles",
     "backToBlog": "← Back to blog",
-    "noArticles": "No articles found."
+    "noArticles": "No articles found.",
+    "toc": "Contents",
+    "focusMode": "Focus mode",
+    "exitFocus": "Exit focus",
+    "exportPdf": "Export PDF",
+    "exportMd": "Export .md",
+    "readingTime": "min read"
   },
   "seo": {
     "homeDescription": "Tech Lead and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",

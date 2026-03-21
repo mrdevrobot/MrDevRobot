@@ -1,6 +1,6 @@
 ---
 title: "Zero Alloc, Zero Reflection: How BLite Handles Complex Objects at Full Speed"
-date: "2026-03-21"
+date: "2026-02-17"
 description: "Two engineering challenges in BLite: supporting private fields, private constructors and nested collections without runtime reflection — and managing serialization buffers without putting pressure on the GC."
 tags: [".net", "blite", "performance", "reflection", "span", "source-generators", "memory", "open-source"]
 image: "/avatar.jpg"

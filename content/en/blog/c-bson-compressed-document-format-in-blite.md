@@ -1,7 +1,7 @@
 ---
 title: "C-BSON: The Compressed Document Format I Built Into BLite"
 description: "Why I replaced BSON's null-terminated field names with 2-byte integer IDs, how the dictionary system works, and an honest critique of the trade-offs I made."
-date: "2026-03-20"
+date: "2026-02-10"
 tags: [".net", "blite", "bson", "embedded-database", "performance", "open-source", "storage-engine"]
 ---
 
@@ -17,7 +17,7 @@ Fair warning: this won't be a victory lap. I'll show real code, explain the moti
 
 [BSON](https://bsonspec.org/) is the wire format behind MongoDB. It's a perfectly reasonable design: a compact binary representation of JSON-like documents. Each element in a BSON document is serialized as:
 
-```
+``` bash
 [1 byte: type] [N bytes: field name as null-terminated UTF-8] [N bytes: value]
 ```
 
@@ -42,7 +42,7 @@ C-BSON replaces the null-terminated UTF-8 field name with a **2-byte `ushort` fi
 
 The element wire format becomes:
 
-```
+``` bash
 [1 byte: type] [2 bytes: field ID as little-endian ushort] [N bytes: value]
 ```
 

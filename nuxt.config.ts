@@ -65,7 +65,8 @@ export default defineNuxtConfig({
 
   content: {
     highlight: {
-      theme: 'github-dark'
+      theme: 'one-dark-pro',
+      langs: ['csharp', 'typescript', 'javascript', 'bash', 'json', 'yaml', 'css', 'html', 'markdown', 'sql', 'xml']
     }
   },
 

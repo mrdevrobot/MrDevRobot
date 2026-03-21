@@ -1,7 +1,7 @@
 ---
 title: "Hello World — Why I Started This Blog"
 description: "An introduction to MrDevRobot: my personal space for architecture deep-dives, open source stories, and technical writing."
-date: "2026-03-20"
+date: "2026-02-03"
 tags: [".net", "architecture", "open-source", "ddd"]
 ---
 

@@ -21,7 +21,8 @@
     "facts": {
       "base": "Based in Veneto, Italy",
       "since": "Engineering since",
-      "oss": "Open source projects"
+      "oss": "Open source projects",
+      "foundation": "Member since Oct 2026"
     }
   },
   "about": {
@@ -33,7 +34,8 @@
     "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working in R&D and AI.",
     "community": "Community",
     "blogTitle": "Notes from the field",
-    "allProjects": "All repositories"
+    "allProjects": "All repositories",
+    "foundation": "Member of the .NET Foundation since October 2026."
   },
   "article": {
     "date": "Date",

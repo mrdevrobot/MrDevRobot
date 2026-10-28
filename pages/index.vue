@@ -37,6 +37,7 @@
             <h2 class="section-title bento__title">{{ $t('about.title') }}</h2>
             <p class="bento__text">{{ $t('about.intro') }}</p>
             <p class="bento__text">{{ $t('about.expertise') }}</p>
+            <p class="bento__text">{{ $t('about.foundation') }} {{ $t('about.xedotnet') }}</p>
             <div class="bento__tags">
               <span v-for="skill in skills" :key="skill" class="tag">{{ skill }}</span>
             </div>
@@ -153,6 +154,7 @@ useHead({
             addressCountry: 'IT'
           },
           sameAs: ['https://github.com/mrdevrobot', 'https://xedotnet.org'],
+          memberOf: { '@type': 'Organization', name: '.NET Foundation', url: 'https://dotnetfoundation.org' },
           knowsAbout: ['.NET', 'Clean Architecture', 'Domain-Driven Design', 'Cloud Computing', 'Distributed Systems', 'Mobile Development', 'Embedded Systems', 'Open Source Software']
         },
         {
@@ -172,7 +174,8 @@ useHead({
 const facts = computed(() => [
   { value: 'Noventa di Piave', label: t('hero.facts.base') },
   { value: '2010', label: t('hero.facts.since') },
-  { value: '5+', label: t('hero.facts.oss') }
+  { value: '5+', label: t('hero.facts.oss') },
+  { value: '.NET Foundation', label: t('hero.facts.foundation') }
 ])
 
 const skills = ['.NET', 'AI', 'Clean Architecture', 'DDD', 'CQRS', 'Cloud', 'Distributed Systems', 'Mobile & Embedded', 'Open Source']

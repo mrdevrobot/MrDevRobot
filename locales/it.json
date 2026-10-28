@@ -21,7 +21,8 @@
     "facts": {
       "base": "Vivo in Veneto",
       "since": "Ingegnere dal",
-      "oss": "Progetti open source"
+      "oss": "Progetti open source",
+      "foundation": "Membro da ottobre 2026"
     }
   },
   "about": {
@@ -33,7 +34,8 @@
     "blog_description": "Questo blog è scritto interamente in inglese: architectural decision records, deep-dive tecnici e riflessioni dal lavoro quotidiano in R&D e AI.",
     "community": "Community",
     "blogTitle": "Appunti dal campo",
-    "allProjects": "Tutti i repository"
+    "allProjects": "Tutti i repository",
+    "foundation": "Membro della .NET Foundation da ottobre 2026."
   },
   "article": {
     "date": "Data",

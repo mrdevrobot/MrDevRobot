@@ -1,7 +1,11 @@
 <template>
   <section class="blog-listing">
     <div class="container">
-      <h1 class="page-title">{{ $t('article.allArticles') }}</h1>
+      <header class="blog-listing__head">
+        <p class="eyebrow">{{ $t('nav.blog') }}</p>
+        <h1 class="blog-listing__title">{{ $t('article.allArticles') }}</h1>
+        <p class="blog-listing__lead">{{ $t('seo.blogDescription') }}</p>
+      </header>
       <div v-if="articles && articles.length" class="articles-grid">
         <ArticleCard
           v-for="article in articles"
@@ -46,34 +50,39 @@ useSeoMeta({
 
 <style scoped>
 .blog-listing {
-  background: #f5f3e8;
-  padding: 3rem 1.25rem 4rem;
+  padding: clamp(3rem, 7vw, 5rem) 0 5rem;
   min-height: 60vh;
 }
 
-.page-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  color: #0c0e0c;
-  letter-spacing: -0.01em;
+.blog-listing__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
-.page-title::before {
-  content: '// ';
-  color: #4ade80;
+.blog-listing__title {
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3.2rem);
+  font-weight: 740;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.blog-listing__lead {
+  max-width: 40rem;
+  color: var(--text-2);
+  font-size: 1.02rem;
+  line-height: 1.6;
 }
 
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .no-articles {
-  font-family: 'Space Mono', monospace;
-  color: #78716c;
-  font-size: 0.9rem;
+  color: var(--text-3);
 }
 </style>

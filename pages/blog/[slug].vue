@@ -9,28 +9,29 @@
       <!-- ── Main column ── -->
       <div class="article-page__main">
         <NuxtLink :to="localePath('/blog')" class="back-link">
-          &gt; {{ $t('article.backToBlog') }}
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+          {{ $t('article.backToBlog') }}
         </NuxtLink>
 
         <article v-if="article">
           <header class="article-header">
-            <h1 class="article-title">{{ article.title }}</h1>
             <div class="article-meta">
-              <time v-if="article.date" class="article-date">
+              <time v-if="article.date" class="article-date mono" :datetime="article.date">
                 {{ formatDate(article.date) }}
               </time>
-              <span v-if="readingTime" class="article-readtime">
-                ~{{ readingTime }} min read
+              <span v-if="readingTime" class="article-readtime mono">
+                {{ readingTime }} {{ $t('article.readingTime') }}
               </span>
-              <div v-if="article.tags && article.tags.length" class="article-tags">
-                <span v-for="tag in article.tags" :key="tag" class="retro-tag">
-                  {{ tag }}
-                </span>
-              </div>
             </div>
+            <h1 class="article-title">{{ article.title }}</h1>
             <p v-if="article.description" class="article-description">
               {{ article.description }}
             </p>
+            <div v-if="article.tags && article.tags.length" class="article-tags">
+              <span v-for="tag in article.tags" :key="tag" class="tag tag--accent">
+                {{ tag }}
+              </span>
+            </div>
           </header>
 
           <div ref="articleBodyRef" class="article-body">
@@ -45,25 +46,23 @@
 
       <!-- ── Sidebar ── -->
       <aside v-if="article" class="article-sidebar" :class="{ 'article-sidebar--focus': focusMode }">
-        <!-- Action buttons -->
         <div class="sidebar-actions">
-          <button class="sidebar-btn sidebar-btn--focus" :class="{ active: focusMode }" :title="$t('article.focusMode')" @click="focusMode = !focusMode">
-            <span class="btn-icon">{{ focusMode ? '⊠' : '⊡' }}</span>
-            <span class="btn-label">{{ focusMode ? $t('article.exitFocus') : $t('article.focusMode') }}</span>
+          <button class="sidebar-btn" :class="{ active: focusMode }" :title="$t('article.focusMode')" @click="focusMode = !focusMode">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3" /></svg>
+            <span>{{ focusMode ? $t('article.exitFocus') : $t('article.focusMode') }}</span>
           </button>
           <button class="sidebar-btn" :title="$t('article.exportPdf')" @click="exportPdf">
-            <span class="btn-icon">⎙</span>
-            <span class="btn-label">{{ $t('article.exportPdf') }}</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6z" /></svg>
+            <span>{{ $t('article.exportPdf') }}</span>
           </button>
           <button class="sidebar-btn" :title="$t('article.exportMd')" @click="exportMarkdown">
-            <span class="btn-icon">↓</span>
-            <span class="btn-label">{{ $t('article.exportMd') }}</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 19h16" /></svg>
+            <span>{{ $t('article.exportMd') }}</span>
           </button>
         </div>
 
-        <!-- Table of contents -->
         <nav v-if="toc.length" class="sidebar-toc">
-          <p class="sidebar-toc__title">> {{ $t('article.toc') }}</p>
+          <p class="sidebar-toc__title">{{ $t('article.toc') }}</p>
           <ul class="sidebar-toc__list">
             <li
               v-for="item in toc"
@@ -122,10 +121,15 @@ const toc = computed<TocItem[]>(() => {
   const body = article.value?.body
   if (!body) return []
   const items: TocItem[] = []
+  // headings may contain inline code: collect text from nested nodes too
+  function textOf(node: any): string {
+    if (node.value) return node.value
+    return node.children?.map(textOf).join('') ?? ''
+  }
   function walk(node: any) {
     if (!node) return
     if (['h2', 'h3', 'h4'].includes(node.tag)) {
-      const text = node.children?.map((c: any) => c.value ?? '').join('') ?? ''
+      const text = textOf(node)
       const id = node.props?.id ?? text.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '')
       if (text) items.push({ id, text, depth: parseInt(node.tag[1]) })
     }
@@ -273,20 +277,16 @@ function formatDate(dateStr: string): string {
 </script>
 
 <style scoped>
-/* ── Page wrapper ── */
 .article-page {
-  background: #f5f3e8;
-  padding: 3rem 1.25rem 5rem;
+  padding: clamp(2rem, 5vw, 3.5rem) 0 5rem;
   min-height: 70vh;
 }
 
-/* ── Two-column layout ── */
 .article-page__layout {
   display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 3rem;
-  max-width: 1020px;
-  margin: 0 auto;
+  grid-template-columns: minmax(0, var(--measure)) 250px;
+  justify-content: center;
+  gap: 3.5rem;
   align-items: start;
 }
 
@@ -296,34 +296,41 @@ function formatDate(dateStr: string): string {
 
 /* ── Back link ── */
 .back-link {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  color: #22c55e;
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-2);
   text-decoration: none;
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.04em;
-  transition: color 0.15s ease;
+  margin-bottom: 2.25rem;
+  transition: color var(--t-fast);
+}
+
+.back-link svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--t-fast);
 }
 
 .back-link:hover {
-  color: #4ade80;
+  color: var(--accent);
 }
 
-/* ── Article header ── */
+.back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+/* ── Header ── */
 .article-header {
   margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e7e2d4;
-}
-
-.article-title {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 700;
-  line-height: 1.25;
-  color: #0c0e0c;
-  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .article-meta {
@@ -331,26 +338,30 @@ function formatDate(dateStr: string): string {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.article-date {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: #78716c;
-  letter-spacing: 0.04em;
-}
-
-.article-readtime {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: #78716c;
-  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  font-size: 0.74rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
 }
 
 .article-readtime::before {
   content: '·';
-  margin-right: 0.4rem;
+  margin-right: 0.75rem;
+}
+
+.article-title {
+  font-size: clamp(1.8rem, 1.3rem + 2.2vw, 2.8rem);
+  font-weight: 740;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.article-description {
+  color: var(--text-2);
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
 }
 
 .article-tags {
@@ -359,104 +370,111 @@ function formatDate(dateStr: string): string {
   flex-wrap: wrap;
 }
 
-.retro-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.67rem;
-  color: #16a34a;
-  border: 1px solid #86efac;
-  padding: 0.1rem 0.45rem;
-  letter-spacing: 0.03em;
+/* ── Body ── */
+.article-body {
+  font-size: 1.02rem;
 }
 
-.article-description {
-  color: #57534e;
-  font-size: 1rem;
-  line-height: 1.65;
-  margin-top: 0.75rem;
-  font-style: italic;
-}
-
-/* ── Article body markdown ── */
 .article-body :deep(h2),
 .article-body :deep(h3),
 .article-body :deep(h4) {
-  font-family: 'Space Mono', monospace;
-  margin-top: 2.25rem;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #0c0e0c;
+  margin-top: 2.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 680;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  scroll-margin-top: calc(var(--header-h) + 1rem);
 }
 
-.article-body :deep(h2)::before {
-  content: '## ';
-  color: #4ade80;
-}
+.article-body :deep(h2) { font-size: 1.5rem; }
+.article-body :deep(h3) { font-size: 1.2rem; }
+.article-body :deep(h4) { font-size: 1.05rem; }
 
-.article-body :deep(h3)::before {
-  content: '### ';
-  color: #4ade80;
+.article-body :deep(h2 a),
+.article-body :deep(h3 a),
+.article-body :deep(h4 a) {
+  color: inherit;
+  text-decoration: none;
 }
-
-.article-body :deep(h2) { font-size: 1.25rem; }
-.article-body :deep(h3) { font-size: 1.05rem; }
 
 .article-body :deep(p) {
-  margin-bottom: 1.25rem;
-  color: #3a3631;
+  margin-bottom: 1.3rem;
+  color: var(--text-2);
   line-height: 1.8;
+}
+
+.article-body :deep(strong) {
+  color: var(--text);
+  font-weight: 640;
 }
 
 .article-body :deep(ul),
 .article-body :deep(ol) {
-  margin: 0 0 1.25rem 1.5rem;
-  color: #3a3631;
+  margin: 0 0 1.3rem 1.4rem;
+  color: var(--text-2);
   line-height: 1.8;
 }
 
 .article-body :deep(li) {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.35rem;
+  padding-left: 0.2rem;
+}
+
+.article-body :deep(li::marker) {
+  color: var(--accent);
 }
 
 .article-body :deep(a) {
-  color: #16a34a;
+  color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--t-fast);
+}
+
+.article-body :deep(a:hover) {
+  text-decoration-color: var(--accent);
 }
 
 /* inline code only — block code is handled by ProseCode.vue */
 .article-body :deep(code) {
-  background: #e8f5e9;
-  color: #166534;
-  border: 1px solid #bbf7d0;
-  padding: 0.15em 0.4em;
-  font-size: 0.87em;
-  font-family: 'Space Mono', monospace;
-  border-radius: 2px;
+  background: var(--inline-code-bg);
+  color: var(--inline-code-fg);
+  padding: 0.15em 0.45em;
+  font-size: 0.86em;
+  font-family: var(--font-mono);
+  border-radius: 6px;
 }
 
-/* reset inline code inside a pre (block code) */
 .article-body :deep(pre code) {
   background: transparent !important;
   color: inherit !important;
-  border: none !important;
   padding: 0 !important;
   font-size: inherit !important;
 }
 
 .article-body :deep(blockquote) {
-  border-left: 3px solid #4ade80;
-  background: rgba(74, 222, 128, 0.05);
-  padding: 0.75rem 1rem;
-  color: #57534e;
-  font-style: italic;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.9rem 1.2rem;
   margin: 1.5rem 0;
+}
+
+.article-body :deep(blockquote p:last-child) {
+  margin-bottom: 0;
 }
 
 .article-body :deep(hr) {
   border: none;
-  border-top: 1px solid #e7e2d4;
-  margin: 2rem 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.article-body :deep(img) {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin: 1.5rem 0;
 }
 
 /* ── Tables ── */
@@ -467,51 +485,42 @@ function formatDate(dateStr: string): string {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
-  font-size: 0.82rem;
-  font-family: 'Space Mono', monospace;
+  font-size: 0.86rem;
   white-space: nowrap;
 }
 
 .article-body :deep(thead th) {
-  background: #0c0e0c;
-  color: #4ade80;
-  padding: 0.5rem 0.9rem;
+  background: var(--surface-hover);
+  color: var(--text);
+  padding: 0.6rem 0.9rem;
   text-align: left;
-  font-weight: 700;
-  border: 1px solid #374137;
-  letter-spacing: 0.03em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-strong);
 }
 
 .article-body :deep(tbody td) {
-  padding: 0.45rem 0.9rem;
-  border: 1px solid #dcd8cc;
-  color: #3a3631;
+  padding: 0.55rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-2);
   vertical-align: middle;
 }
 
-.article-body :deep(tbody tr:nth-child(even) td) {
-  background: #eeece0;
-}
-
 .article-body :deep(tbody tr:hover td) {
-  background: #e6f4ea;
+  background: var(--surface);
 }
 
-/* ── Not found ── */
 .not-found {
-  font-family: 'Space Mono', monospace;
-  color: #78716c;
-  font-size: 0.9rem;
+  color: var(--text-3);
 }
 
 /* ── Sidebar ── */
 .article-sidebar {
   position: sticky;
-  top: 5rem;
+  top: calc(var(--header-h) + 1.5rem);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  transition: opacity 0.3s ease;
+  gap: 1.25rem;
+  transition: opacity var(--t-med);
 }
 
 .article-sidebar--focus {
@@ -519,102 +528,105 @@ function formatDate(dateStr: string): string {
   pointer-events: none;
 }
 
-/* ── Sidebar action buttons ── */
 .sidebar-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(14px);
 }
 
 .sidebar-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: #3a3631;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-2);
   background: transparent;
-  border: 1px solid #c8c2b4;
-  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.65rem;
   cursor: pointer;
-  letter-spacing: 0.03em;
   text-align: left;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
   width: 100%;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.sidebar-btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .sidebar-btn:hover {
-  border-color: #4ade80;
-  color: #16a34a;
-  background: rgba(74, 222, 128, 0.06);
+  background: var(--surface-hover);
+  color: var(--text);
 }
 
-.sidebar-btn--focus.active {
-  border-color: #4ade80;
-  color: #16a34a;
-  background: rgba(74, 222, 128, 0.08);
-}
-
-.btn-icon {
-  flex-shrink: 0;
-  width: 1em;
-  text-align: center;
+.sidebar-btn.active {
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 /* ── Table of contents ── */
+.sidebar-toc {
+  padding: 0 0.5rem;
+}
+
 .sidebar-toc__title {
-  font-family: 'Space Mono', monospace;
   font-size: 0.72rem;
-  color: #4ade80;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.6rem;
 }
 
 .sidebar-toc__list {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  border-left: 1px solid #e7e2d4;
-}
-
-.sidebar-toc__item {
-  line-height: 1.4;
+  border-left: 1px solid var(--border);
 }
 
 .sidebar-toc__link {
   display: block;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  color: #78716c;
+  font-size: 0.8rem;
+  color: var(--text-3);
   text-decoration: none;
-  padding: 0.25rem 0.6rem;
-  border-left: 2px solid transparent;
+  padding: 0.28rem 0.75rem;
   margin-left: -1px;
-  transition: color 0.15s, border-color 0.15s;
-  line-height: 1.5;
+  border-left: 2px solid transparent;
+  line-height: 1.45;
   word-break: break-word;
-  white-space: normal;
+  transition: color var(--t-fast), border-color var(--t-fast);
 }
 
 .sidebar-toc__link:hover {
-  color: #3a3631;
-  border-left-color: #c8c2b4;
+  color: var(--text);
 }
 
 .sidebar-toc__item.active .sidebar-toc__link {
-  color: #16a34a;
-  border-left-color: #4ade80;
+  color: var(--accent);
+  border-left-color: var(--accent);
 }
 
-.toc-depth-3 .sidebar-toc__link { padding-left: 1.25rem; }
-.toc-depth-4 .sidebar-toc__link { padding-left: 2rem; }
+.toc-depth-3 .sidebar-toc__link { padding-left: 1.4rem; }
+.toc-depth-4 .sidebar-toc__link { padding-left: 2.1rem; }
 
-/* ── Focus mode overlay ── */
+/* ── Focus mode ── */
 .focus-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(3, 5, 10, 0.7);
+  backdrop-filter: blur(6px);
   z-index: 10;
   cursor: pointer;
 }
@@ -622,10 +634,11 @@ function formatDate(dateStr: string): string {
 .article-page--focus .article-page__main {
   position: relative;
   z-index: 11;
-  background: #f5f3e8;
-  border-radius: 2px;
-  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.25);
-  padding: 2rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 /* ── Print ── */
@@ -637,24 +650,18 @@ function formatDate(dateStr: string): string {
   }
 
   .article-page {
-    background: #fff !important;
     padding: 0 !important;
   }
 
   .article-page__layout {
     display: block !important;
   }
-
-  .article-body :deep(h2)::before,
-  .article-body :deep(h3)::before {
-    display: none !important;
-  }
 }
 
 /* ── Mobile ── */
 @media (max-width: 900px) {
   .article-page__layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .article-sidebar {

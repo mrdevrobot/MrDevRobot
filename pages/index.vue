@@ -2,64 +2,94 @@
   <div>
     <!-- Hero -->
     <section class="hero">
-      <div class="scanlines" aria-hidden="true" />
       <div class="container hero__inner">
-        <p class="hero__eyebrow">// luca.fabbri.init(1984)</p>
-        <h1 class="hero__title">Luca Fabbri<span class="hero__cursor" aria-hidden="true">_</span></h1>
-        <p class="hero__subtitle">{{ $t('hero.subtitle') }}</p>
+        <p class="eyebrow hero__eyebrow">{{ $t('hero.eyebrow') }}</p>
+        <h1 class="hero__title">
+          <span class="hero__name">Luca Fabbri</span>
+          <span class="hero__headline gradient-text">{{ $t('hero.headline') }}</span>
+        </h1>
+        <p class="hero__lead">{{ $t('hero.lead') }}</p>
         <div class="hero__actions">
-          <NuxtLink :to="localePath('/blog')" class="btn btn--primary">{{ $t('hero.cta') }}</NuxtLink>
+          <NuxtLink :to="localePath('/blog')" class="btn btn--primary">
+            {{ $t('hero.cta') }}
+            <svg class="btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </NuxtLink>
           <a href="https://github.com/mrdevrobot" target="_blank" rel="noopener" class="btn btn--ghost">
-            ~/github/mrdevrobot
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn__gh"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5a3.9 3.9 0 0 1 1-2.7c-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z" /></svg>
+            {{ $t('hero.github') }}
           </a>
+        </div>
+        <ul class="hero__facts" aria-label="Facts">
+          <li v-for="fact in facts" :key="fact.label">
+            <span class="hero__fact-value">{{ fact.value }}</span>
+            <span class="hero__fact-label">{{ fact.label }}</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About / bento -->
+    <section class="about">
+      <div class="container">
+        <div class="bento">
+          <div class="card bento__about reveal">
+            <img src="/avatar.jpg" alt="Luca Fabbri" class="bento__avatar" width="88" height="88" loading="lazy">
+            <h2 class="section-title bento__title">{{ $t('about.title') }}</h2>
+            <p class="bento__text">{{ $t('about.intro') }}</p>
+            <p class="bento__text">{{ $t('about.expertise') }}</p>
+            <div class="bento__tags">
+              <span v-for="skill in skills" :key="skill" class="tag">{{ skill }}</span>
+            </div>
+          </div>
+
+          <a href="https://xedotnet.org" target="_blank" rel="noopener" class="card card--hover card--glow bento__tile reveal">
+            <span class="bento__tile-kicker">{{ $t('about.community') }}</span>
+            <span class="bento__tile-title">XeDotNet</span>
+            <span class="bento__tile-text">{{ $t('about.xedotnet') }}</span>
+            <span class="bento__tile-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <NuxtLink :to="localePath('/blog')" class="card card--hover card--glow bento__tile reveal">
+            <span class="bento__tile-kicker">{{ $t('nav.blog') }}</span>
+            <span class="bento__tile-title">{{ $t('about.blogTitle') }}</span>
+            <span class="bento__tile-text">{{ $t('about.blog_description') }}</span>
+            <span class="bento__tile-arrow" aria-hidden="true">→</span>
+          </NuxtLink>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="about">
-      <div class="container about__grid">
-        <div class="about__bio">
-          <h2 class="retro-heading">{{ $t('about.title') }}</h2>
-          <p class="about__text">{{ $t('about.intro') }}</p>
-          <p class="about__text">{{ $t('about.expertise') }}</p>
-          <p class="about__text">{{ $t('about.blog_description') }}</p>
-          <a href="https://xedotnet.org" target="_blank" rel="noopener" class="xedotnet-link">
-            <span class="prompt">&gt;&nbsp;</span>XeDotNet
+    <!-- Open source -->
+    <section class="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="section-title">{{ $t('about.opensource') }}</h2>
+          <a href="https://github.com/mrdevrobot" target="_blank" rel="noopener" class="section-link">
+            {{ $t('about.allProjects') }} <span aria-hidden="true">→</span>
           </a>
-          <p class="xedotnet-desc">{{ $t('about.xedotnet') }}</p>
-          <div class="tag-cloud">
-            <span class="retro-tag">.NET</span>
-            <span class="retro-tag">Clean Architecture</span>
-            <span class="retro-tag">DDD</span>
-            <span class="retro-tag">CQRS</span>
-            <span class="retro-tag">Cloud</span>
-            <span class="retro-tag">Distributed Systems</span>
-            <span class="retro-tag">Mobile &amp; Embedded</span>
-            <span class="retro-tag">Open Source</span>
-          </div>
         </div>
-        <div>
-          <h3 class="retro-heading retro-heading--sm">{{ $t('about.opensource') }}</h3>
-          <ul class="projects-list">
-            <li v-for="proj in projects" :key="proj.name">
-              <a :href="proj.url" target="_blank" rel="noopener" class="project-card">
-                <div class="project-card__hd">
-                  <span class="project-card__caret">&gt;</span>
-                  <span class="project-card__name">{{ proj.name }}</span>
-                </div>
-                <p class="project-card__desc">{{ proj.desc }}</p>
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ul class="projects__grid">
+          <li v-for="proj in projects" :key="proj.name" class="reveal">
+            <a :href="proj.url" target="_blank" rel="noopener" class="card card--hover card--glow project">
+              <span class="project__icon" aria-hidden="true">{{ proj.name.slice(0, 1) }}</span>
+              <span class="project__name">{{ proj.name }}</span>
+              <span class="project__desc">{{ proj.desc }}</span>
+              <span class="project__meta mono">{{ proj.meta }}</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
     <!-- Latest Articles -->
     <section class="latest">
       <div class="container">
-        <h2 class="retro-heading">{{ $t('article.latestArticles') }}</h2>
+        <div class="section-head reveal">
+          <h2 class="section-title">{{ $t('article.latestArticles') }}</h2>
+          <NuxtLink :to="localePath('/blog')" class="section-link">
+            {{ $t('article.allArticles') }} <span aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
         <div v-if="articles && articles.length" class="articles-grid">
           <ArticleCard
             v-for="article in articles"
@@ -68,17 +98,6 @@
           />
         </div>
         <p v-else class="no-articles">{{ $t('article.noArticles') }}</p>
-      </div>
-    </section>
-
-    <!-- Fun / Dungeon -->
-    <section class="fun-section">
-      <div class="container">
-        <h2 class="retro-heading">{{ $t('fun.title') }}</h2>
-        <p class="fun-desc">{{ $t('fun.desc') }}</p>
-        <ClientOnly>
-          <DungeonGame />
-        </ClientOnly>
       </div>
     </section>
   </div>
@@ -150,319 +169,299 @@ useHead({
   }]
 })
 
+const facts = computed(() => [
+  { value: 'San Donà di Piave', label: t('hero.facts.base') },
+  { value: '2010', label: t('hero.facts.since') },
+  { value: '5+', label: t('hero.facts.oss') }
+])
+
+const skills = ['.NET', 'AI', 'Clean Architecture', 'DDD', 'CQRS', 'Cloud', 'Distributed Systems', 'Mobile & Embedded', 'Open Source']
+
 const projects = [
   {
     name: 'BLite',
     url: 'https://github.com/EntglDb/BLite',
-    desc: 'Zero-allocation embedded document DB for .NET. LINQ, HNSW vector search, R-Tree geospatial, CDC, time series.'
+    desc: 'Zero-allocation embedded document DB for .NET. LINQ, HNSW vector search, R-Tree geospatial, CDC, time series.',
+    meta: 'database · storage engine'
   },
   {
     name: 'EntglDb',
     url: 'https://github.com/EntglDb/EntglDb.Net',
-    desc: 'P2P data sync middleware. Mesh replication, hash-chained oplog, vector clocks, conflict resolution.'
+    desc: 'P2P data sync middleware. Mesh replication, hash-chained oplog, vector clocks, conflict resolution.',
+    meta: 'sync · distributed'
   },
   {
     name: 'Concordia.Core',
     url: 'https://github.com/mrdevrobot/Concordia',
-    desc: 'Lightweight .NET mediator. Compile-time handler registration via Source Generators. Free MediatR alternative.'
+    desc: 'Lightweight .NET mediator. Compile-time handler registration via Source Generators. Free MediatR alternative.',
+    meta: 'mediator · source generators'
   },
   {
     name: 'ProjectR',
     url: 'https://github.com/mrdevrobot/ProjectR',
-    desc: 'Object-to-object mapping with zero runtime reflection. Source-generated, AOT-compatible.'
+    desc: 'Object-to-object mapping with zero runtime reflection. Source-generated, AOT-compatible.',
+    meta: 'mapping · AOT'
   },
   {
     name: 'TransactR',
     url: 'https://github.com/mrdevrobot/TransactR',
-    desc: 'Multi-step operations using Memento & Saga patterns, pluggable persistence and rollback policies.'
-  },
+    desc: 'Multi-step operations using Memento & Saga patterns, pluggable persistence and rollback policies.',
+    meta: 'saga · memento'
+  }
 ]
 </script>
 
 <style scoped>
 /* ── Hero ── */
 .hero {
-  position: relative;
-  background: #0c0e0c;
-  padding: 5.5rem 0 4.5rem;
-  overflow: hidden;
-}
-
-.scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0, 0, 0, 0.07) 3px,
-    rgba(0, 0, 0, 0.07) 4px
-  );
-  pointer-events: none;
-  z-index: 0;
+  padding: clamp(4rem, 10vw, 7.5rem) 0 clamp(3rem, 6vw, 4.5rem);
 }
 
 .hero__inner {
-  position: relative;
-  z-index: 1;
-}
-
-.hero__eyebrow {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  color: #22c55e;
-  opacity: 0.5;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .hero__title {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: #4ade80;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.1rem;
-  text-shadow: 0 0 28px rgba(74, 222, 128, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(2.6rem, 2rem + 4.5vw, 5.4rem);
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
 }
 
-.hero__cursor {
-  display: inline-block;
-  color: #4ade80;
-  animation: blink 1s step-end infinite;
-  margin-left: 3px;
+.hero__headline {
+  padding-bottom: 0.08em;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.hero__subtitle {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
-  color: #4ade80;
-  opacity: 0.5;
-  max-width: 560px;
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.02em;
-  line-height: 1.65;
+.hero__lead {
+  max-width: 36rem;
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--text-2);
 }
 
 .hero__actions {
   display: flex;
-  gap: 0.875rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  margin-top: 0.25rem;
 }
 
-.btn {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.6rem 1.35rem;
-  text-decoration: none;
-  border: 1px solid;
-  display: inline-block;
-  transition: all 0.15s ease;
+.btn__arrow,
+.btn__gh {
+  width: 16px;
+  height: 16px;
 }
 
-.btn--primary {
-  background: #4ade80;
-  color: #0c0e0c;
-  border-color: #4ade80;
+.btn__arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.btn--primary:hover {
-  background: #86efac;
-  border-color: #86efac;
-  box-shadow: 0 0 18px rgba(74, 222, 128, 0.35);
+.btn__gh {
+  fill: currentColor;
 }
 
-.btn--ghost {
-  background: transparent;
-  color: #4ade80;
-  border-color: rgba(74, 222, 128, 0.35);
-  opacity: 0.65;
+.hero__facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  width: 100%;
 }
 
-.btn--ghost:hover {
-  opacity: 1;
-  border-color: rgba(74, 222, 128, 0.6);
-  background: rgba(74, 222, 128, 0.06);
+.hero__facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0;
 }
 
-/* ── About ── */
+.hero__fact-value {
+  font-weight: 640;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+}
+
+.hero__fact-label {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+
+/* ── Bento ── */
 .about {
-  background: #f5f3e8;
-  padding: 4rem 1.25rem;
-  border-bottom: 1px solid #e7e2d4;
+  padding: 1rem 0 3rem;
 }
 
-.about__grid {
+.bento {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.5rem;
-  padding: 0;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
 }
 
-@media (max-width: 720px) {
-  .about__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+.bento__about {
+  grid-column: span 12;
+  padding: 1.75rem;
 }
 
-.retro-heading {
-  font-family: 'Space Mono', monospace;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0c0e0c;
-  margin-bottom: 1.5rem;
+.bento__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--bg);
+  outline: 1px solid var(--border-strong);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+  margin-bottom: 1.25rem;
 }
 
-.retro-heading::before {
-  content: '// ';
-  color: #22c55e;
-  font-weight: 400;
-}
-
-.retro-heading--sm {
-  font-size: 0.92rem;
-  margin-bottom: 1rem;
-}
-
-.about__text {
-  font-size: 0.92rem;
-  color: #44403c;
+.bento__title {
   margin-bottom: 0.9rem;
-  line-height: 1.8;
 }
 
-.xedotnet-link {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #16a34a;
-  text-decoration: none;
-  margin-top: 0.5rem;
-  transition: text-shadow 0.15s;
+.bento__text {
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 60ch;
 }
 
-.xedotnet-link:hover {
-  text-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+.bento__text + .bento__text {
+  margin-top: 0.75rem;
 }
 
-.prompt {
-  color: #22c55e;
-  opacity: 0.65;
-}
-
-.xedotnet-desc {
-  font-size: 0.82rem;
-  color: #78716c;
-  margin: 0.2rem 0 1.25rem;
-}
-
-.tag-cloud {
+.bento__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 1rem;
+  margin-top: 1.4rem;
 }
 
-.retro-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.67rem;
-  color: #16a34a;
-  border: 1px solid #86efac;
-  background: transparent;
-  padding: 0.18rem 0.55rem;
-  letter-spacing: 0.02em;
+.bento__tile {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  text-decoration: none;
+  min-height: 190px;
+}
+
+.bento__tile-kicker {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.bento__tile-title {
+  font-size: 1.3rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.bento__tile-text {
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.bento__tile-arrow {
+  margin-top: auto;
+  align-self: flex-end;
+  font-size: 1.2rem;
+  color: var(--text-3);
+  transition: color var(--t-fast), transform var(--t-fast);
+}
+
+.bento__tile:hover .bento__tile-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+@media (min-width: 760px) {
+  .bento__about { grid-column: span 7; grid-row: span 2; }
+  .bento__tile { grid-column: span 5; }
 }
 
 /* ── Projects ── */
-.projects-list {
+.projects {
+  padding: 2rem 0 3rem;
+}
+
+.projects__grid {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.project {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.project-card {
-  display: block;
-  background: #fff;
-  border: 1px solid #e7e2d4;
-  border-left: 3px solid #4ade80;
-  padding: 0.8rem 1rem;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 1.4rem;
   text-decoration: none;
-  color: inherit;
-  transition: border-left-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.project-card:hover {
-  border-left-color: #16a34a;
-  box-shadow: 3px 0 14px rgba(34, 197, 94, 0.1);
-}
-
-.project-card__hd {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-bottom: 0.25rem;
-}
-
-.project-card__caret {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  color: #22c55e;
-  opacity: 0.5;
-}
-
-.project-card__name {
-  font-family: 'Space Mono', monospace;
+.project__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
   font-weight: 700;
-  font-size: 0.83rem;
-  color: #0c0e0c;
+  font-size: 1rem;
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 8px 20px -10px var(--glow-1);
+  margin-bottom: 0.6rem;
 }
 
-.project-card__desc {
-  font-size: 0.77rem;
-  color: #78716c;
-  line-height: 1.5;
+.project__name {
+  font-weight: 650;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
 }
 
-/* ── Latest ── */
+.project__desc {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.project__meta {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+/* ── Articles ── */
 .latest {
-  background: #f5f3e8;
-  padding: 3.5rem 1.25rem 4.5rem;
+  padding: 2rem 0 5rem;
 }
 
 .articles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.1rem;
+  gap: 1rem;
 }
 
 .no-articles {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
-  color: #78716c;
-}
-
-/* ── Fun / Dungeon ── */
-.fun-section {
-  background: #f0ede0;
-  padding: 3.5rem 1.25rem 4.5rem;
-  border-top: 1px solid #e7e2d4;
-}
-
-.fun-desc {
-  font-size: 0.88rem;
-  color: #57534e;
-  margin-bottom: 1.75rem;
-  line-height: 1.75;
-  max-width: 580px;
+  color: var(--text-3);
 }
 </style>

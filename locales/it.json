@@ -1,7 +1,10 @@
 {
   "nav": {
     "home": "Home",
-    "blog": "Blog"
+    "blog": "Blog",
+    "main": "Navigazione principale",
+    "toggleTheme": "Cambia tema chiaro / scuro",
+    "language": "Lingua"
   },
   "footer": {
     "text": "© {year} Luca Fabbri · MrDevRobot",
@@ -10,7 +13,16 @@
   "hero": {
     "title": "Luca Fabbri",
     "subtitle": "R&D and AI Expert  ·  .NET  ·  Open Source  ·  classe dell'84",
-    "cta": "Leggi il blog"
+    "cta": "Leggi il blog",
+    "eyebrow": "R&D · AI · .NET · Open Source",
+    "headline": "R&D and AI Expert",
+    "lead": "Progetto e costruisco sistemi software distribuiti in .NET, esploro cosa può fare l'AI per loro e metto per iscritto le decisioni dietro il codice.",
+    "github": "GitHub",
+    "facts": {
+      "base": "Vivo in Veneto",
+      "since": "Ingegnere dal",
+      "oss": "Progetti open source"
+    }
   },
   "about": {
     "title": "Su di me",
@@ -18,7 +30,10 @@
     "expertise": "Focus su .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded e sistemi distribuiti real-time.",
     "xedotnet": "Membro attivo di XeDotNet, il gruppo sviluppatori .NET del Veneto.",
     "opensource": "Progetti Open Source",
-    "blog_description": "Questo blog è scritto interamente in inglese: architectural decision records, deep-dive tecnici e riflessioni dal lavoro quotidiano in R&D e AI."
+    "blog_description": "Questo blog è scritto interamente in inglese: architectural decision records, deep-dive tecnici e riflessioni dal lavoro quotidiano in R&D e AI.",
+    "community": "Community",
+    "blogTitle": "Appunti dal campo",
+    "allProjects": "Tutti i repository"
   },
   "article": {
     "date": "Data",
@@ -39,9 +54,5 @@
     "homeDescription": "Esperto di R&D e AI e ingegnere .NET a San Donà di Piave, Veneto. Clean Architecture, DDD, Sistemi Distribuiti e Open Source. Autore di BLite, EntglDb, Concordia.",
     "blogTitle": "Blog",
     "blogDescription": "Articoli su .NET, Clean Architecture, Domain-Driven Design, Sistemi Distribuiti e ingegneria del software di Luca Fabbri, esperto di R&D e AI."
-  },
-  "fun": {
-    "title": "Terminal Crawler",
-    "desc": "Un mini dungeon crawler in stile terminale retro. Usa W A S D per muoverti, combatti Null Pointer e Race Condition, raccogli oro e scendi 10 piani. I progressi sono salvati localmente."
   }
 }

@@ -1,31 +1,24 @@
 <template>
-  <article class="article-card">
-    <div class="article-card__content">
+  <article class="article-card card card--hover card--glow reveal">
+    <NuxtLink :to="link" class="article-card__link">
       <div class="article-card__meta">
-        <time v-if="article.date" class="article-card__date">
+        <time v-if="article.date" class="article-card__date mono" :datetime="article.date">
           {{ formatDate(article.date) }}
         </time>
-        <div v-if="article.tags && article.tags.length" class="article-card__tags">
-          <span v-for="tag in article.tags" :key="tag" class="article-card__tag">
-            {{ tag }}
-          </span>
-        </div>
       </div>
-      <h2 class="article-card__title">
-        <NuxtLink :to="localePath(`/blog/${article._path?.split('/').pop()}`)">
-          {{ article.title }}
-        </NuxtLink>
-      </h2>
+      <h2 class="article-card__title">{{ article.title }}</h2>
       <p v-if="article.description" class="article-card__description">
         {{ article.description }}
       </p>
-      <NuxtLink
-        :to="localePath(`/blog/${article._path?.split('/').pop()}`)"
-        class="article-card__read-more"
-      >
-        &gt; {{ $t('article.readMore') }}
-      </NuxtLink>
-    </div>
+      <div class="article-card__foot">
+        <div v-if="article.tags && article.tags.length" class="article-card__tags">
+          <span v-for="tag in article.tags.slice(0, 3)" :key="tag" class="tag">{{ tag }}</span>
+        </div>
+        <span class="article-card__arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </span>
+      </div>
+    </NuxtLink>
   </article>
 </template>
 
@@ -40,14 +33,16 @@ interface Article {
   _path?: string
 }
 
-defineProps<{
+const props = defineProps<{
   article: Article
 }>()
+
+const link = computed(() => localePath(`/blog/${props.article._path?.split('/').pop()}`))
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString(undefined, {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric'
   })
 }
@@ -55,87 +50,92 @@ function formatDate(dateStr: string): string {
 
 <style scoped>
 .article-card {
-  background: #fff;
-  border: 1px solid #e7e2d4;
-  border-left: 3px solid #4ade80;
-  overflow: hidden;
-  transition: border-color 0.15s ease;
+  display: flex;
 }
 
-.article-card:hover {
-  border-left-color: #22c55e;
-}
-
-.article-card__content {
-  padding: 1.25rem 1.25rem 1.25rem 1.1rem;
+.article-card__link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.4rem 1.4rem 1.2rem;
+  text-decoration: none;
+  border-radius: inherit;
 }
 
 .article-card__meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .article-card__date {
-  font-family: 'Space Mono', monospace;
   font-size: 0.72rem;
-  color: #78716c;
-  letter-spacing: 0.04em;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+.article-card__title {
+  font-size: 1.08rem;
+  font-weight: 640;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--text);
+  margin-bottom: 0.55rem;
+  transition: color var(--t-fast);
+}
+
+.article-card:hover .article-card__title {
+  color: var(--accent);
+}
+
+.article-card__description {
+  color: var(--text-2);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card__foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .article-card__tags {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.35rem;
   flex-wrap: wrap;
 }
 
-.article-card__tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.67rem;
-  color: #16a34a;
-  border: 1px solid #86efac;
-  padding: 0.1rem 0.45rem;
-  letter-spacing: 0.03em;
+.article-card__arrow {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  color: var(--text-2);
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
 }
 
-.article-card__title {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-  line-height: 1.45;
-  font-family: 'Space Mono', monospace;
+.article-card__arrow svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.article-card__title a {
-  color: #0c0e0c;
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.article-card__title a:hover {
-  color: #16a34a;
-}
-
-.article-card__description {
-  color: #57534e;
-  font-size: 0.92rem;
-  line-height: 1.65;
-  margin: 0 0 1rem;
-}
-
-.article-card__read-more {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  color: #16a34a;
-  font-size: 0.75rem;
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color 0.15s ease;
-}
-
-.article-card__read-more:hover {
-  color: #4ade80;
+.article-card:hover .article-card__arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
 }
 </style>

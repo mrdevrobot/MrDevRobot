@@ -26,7 +26,7 @@
   },
   "about": {
     "title": "About Me",
-    "intro": "Computer Engineer, born in 1984 in Rimini and now based in San Donà di Piave, Veneto. Graduated in 2010, I work as an R&D and AI expert, designing and building complex distributed software systems.",
+    "intro": "Computer Engineer, born in 1984 in Rimini and now based in Noventa di Piave, Veneto. Graduated in 2010, I work as an R&D and AI expert, designing and building complex distributed software systems.",
     "expertise": "My focus: .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded, real-time distributed systems.",
     "xedotnet": "Active member of XeDotNet, the Veneto .NET developer community.",
     "opensource": "Open Source Projects",
@@ -51,7 +51,7 @@
     "readingTime": "min read"
   },
   "seo": {
-    "homeDescription": "R&D and AI expert and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
+    "homeDescription": "R&D and AI expert and .NET Engineer based in Noventa di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
     "blogTitle": "Blog",
     "blogDescription": "Articles on .NET, Clean Architecture, Domain-Driven Design, Distributed Systems and software engineering by Luca Fabbri, R&D and AI expert."
   }

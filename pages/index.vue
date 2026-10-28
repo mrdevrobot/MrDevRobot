@@ -148,7 +148,7 @@ useHead({
           birthPlace: { '@type': 'Place', name: 'Rimini, Italy' },
           address: {
             '@type': 'PostalAddress',
-            addressLocality: 'San Donà di Piave',
+            addressLocality: 'Noventa di Piave',
             addressRegion: 'Veneto',
             addressCountry: 'IT'
           },
@@ -170,7 +170,7 @@ useHead({
 })
 
 const facts = computed(() => [
-  { value: 'San Donà di Piave', label: t('hero.facts.base') },
+  { value: 'Noventa di Piave', label: t('hero.facts.base') },
   { value: '2010', label: t('hero.facts.since') },
   { value: '5+', label: t('hero.facts.oss') }
 ])

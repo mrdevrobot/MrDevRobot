@@ -26,7 +26,7 @@
   },
   "about": {
     "title": "Su di me",
-    "intro": "Ingegnere Informatico, nato nel 1984 a Rimini e ora residente a San Donà di Piave, in Veneto. Laureato nel 2010, lavoro come esperto di R&D e AI, progettando e sviluppando sistemi software distribuiti complessi.",
+    "intro": "Ingegnere Informatico, nato nel 1984 a Rimini e ora residente a Noventa di Piave, in Veneto. Laureato nel 2010, lavoro come esperto di R&D e AI, progettando e sviluppando sistemi software distribuiti complessi.",
     "expertise": "Focus su .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded e sistemi distribuiti real-time.",
     "xedotnet": "Membro attivo di XeDotNet, il gruppo sviluppatori .NET del Veneto.",
     "opensource": "Progetti Open Source",
@@ -51,7 +51,7 @@
     "readingTime": "min di lettura"
   },
   "seo": {
-    "homeDescription": "Esperto di R&D e AI e ingegnere .NET a San Donà di Piave, Veneto. Clean Architecture, DDD, Sistemi Distribuiti e Open Source. Autore di BLite, EntglDb, Concordia.",
+    "homeDescription": "Esperto di R&D e AI e ingegnere .NET a Noventa di Piave, Veneto. Clean Architecture, DDD, Sistemi Distribuiti e Open Source. Autore di BLite, EntglDb, Concordia.",
     "blogTitle": "Blog",
     "blogDescription": "Articoli su .NET, Clean Architecture, Domain-Driven Design, Sistemi Distribuiti e ingegneria del software di Luca Fabbri, esperto di R&D e AI."
   }

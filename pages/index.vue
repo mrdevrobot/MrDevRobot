@@ -104,7 +104,7 @@ useSeoMeta({
   ogTitle: 'Luca Fabbri · MrDevRobot',
   ogDescription: () => t('seo.homeDescription'),
   ogImage: `${siteUrl}/luca-fabbri.jpg`,
-  ogImageAlt: 'Luca Fabbri — Tech Lead & .NET Engineer',
+  ogImageAlt: 'Luca Fabbri — R&D and AI Expert & .NET Engineer',
   ogType: 'website',
   ogUrl: () => locale.value === 'en' ? siteUrl : `${siteUrl}/${locale.value}`,
   twitterTitle: 'Luca Fabbri · MrDevRobot',
@@ -125,8 +125,7 @@ useHead({
           name: 'Luca Fabbri',
           url: siteUrl,
           image: { '@type': 'ImageObject', url: `${siteUrl}/luca-fabbri.jpg` },
-          jobTitle: 'Tech Lead',
-          worksFor: { '@type': 'Organization', name: 'Zucchetti Hospitality Srl' },
+          jobTitle: 'R&D and AI Expert',
           birthPlace: { '@type': 'Place', name: 'Rimini, Italy' },
           address: {
             '@type': 'PostalAddress',

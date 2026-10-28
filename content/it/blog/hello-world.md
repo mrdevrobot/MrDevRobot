@@ -7,7 +7,7 @@ tags: [".net", "architecture", "open-source", "ddd"]
 
 # Hello World — Why I Started This Blog
 
-My name is **Luca Fabbri**. I'm a Computer Engineer (class of 2010), currently working as Tech Lead at **Zucchetti Hospitality Srl**, and an active open source developer.
+My name is **Luca Fabbri**. I'm a Computer Engineer (class of 2010), working as an **R&D and AI expert**, and an active open source developer.
 
 This is **MrDevRobot** — my corner of the internet for exploring the things I care most about as an engineer.
 
@@ -20,7 +20,7 @@ This blog exists to capture those decisions:
 - **Architectural choices** behind my open source projects
 - **Technical deep-dives** into .NET, distributed systems, and Clean Architecture
 - **Patterns and principles** I rely on daily: DDD, CQRS, Event-Driven architecture, the Saga pattern
-- **Lessons from production** as a Tech Lead working on hospitality software at scale
+- **Lessons from production** from years of R&D and AI work on software at scale
 
 ## My open source work
 

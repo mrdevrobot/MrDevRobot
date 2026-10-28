@@ -1,7 +1,10 @@
 {
   "nav": {
     "home": "Home",
-    "blog": "Blog"
+    "blog": "Blog",
+    "main": "Main navigation",
+    "toggleTheme": "Toggle light / dark theme",
+    "language": "Language"
   },
   "footer": {
     "text": "© {year} Luca Fabbri · MrDevRobot",
@@ -10,7 +13,16 @@
   "hero": {
     "title": "Luca Fabbri",
     "subtitle": "R&D and AI Expert  ·  .NET  ·  Open Source  ·  class of '84",
-    "cta": "Read the blog"
+    "cta": "Read the blog",
+    "eyebrow": "R&D · AI · .NET · Open Source",
+    "headline": "R&D and AI Expert",
+    "lead": "I design and build distributed software systems in .NET, explore what AI can do for them, and write down the decisions behind the code.",
+    "github": "GitHub",
+    "facts": {
+      "base": "Based in Veneto, Italy",
+      "since": "Engineering since",
+      "oss": "Open source projects"
+    }
   },
   "about": {
     "title": "About Me",
@@ -18,7 +30,10 @@
     "expertise": "My focus: .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded, real-time distributed systems.",
     "xedotnet": "Active member of XeDotNet, the Veneto .NET developer community.",
     "opensource": "Open Source Projects",
-    "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working in R&D and AI."
+    "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working in R&D and AI.",
+    "community": "Community",
+    "blogTitle": "Notes from the field",
+    "allProjects": "All repositories"
   },
   "article": {
     "date": "Date",
@@ -39,9 +54,5 @@
     "homeDescription": "R&D and AI expert and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
     "blogTitle": "Blog",
     "blogDescription": "Articles on .NET, Clean Architecture, Domain-Driven Design, Distributed Systems and software engineering by Luca Fabbri, R&D and AI expert."
-  },
-  "fun": {
-    "title": "Terminal Crawler",
-    "desc": "A tiny dungeon crawler in the spirit of retro terminal games. Use W A S D to move, fight off Null Pointers and Race Conditions, collect gold, descend 10 floors. Your progress is saved locally."
   }
 }

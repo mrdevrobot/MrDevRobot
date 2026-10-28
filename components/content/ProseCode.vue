@@ -1,13 +1,18 @@
 <template>
   <div class="code-block">
     <div class="code-block__header">
-      <span class="code-block__lang">{{ language || 'code' }}</span>
+      <span class="code-block__dots" aria-hidden="true"><i /><i /><i /></span>
+      <span class="code-block__lang">{{ filename || language || 'code' }}</span>
       <button
         class="code-block__copy"
         :class="{ 'code-block__copy--done': copied }"
         :aria-label="copied ? 'Copied' : 'Copy code'"
         @click="handleCopy"
-      >{{ copied ? '✓ copied' : '> copy' }}</button>
+      >
+        <svg v-if="!copied" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V5a1 1 0 0 1 1-1h10" /></svg>
+        <svg v-else viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5L20 7" /></svg>
+        <span>{{ copied ? 'Copied' : 'Copy' }}</span>
+      </button>
     </div>
     <slot />
   </div>
@@ -36,77 +41,92 @@ async function handleCopy() {
 <style scoped>
 .code-block {
   position: relative;
-  margin-bottom: 1.75rem;
-  border-left: 3px solid #4ade80;
-  border-top: 1px solid #1e2d1e;
-  border-right: 1px solid #1e2d1e;
-  border-bottom: 1px solid #1e2d1e;
-  border-radius: 0 4px 4px 0;
+  margin: 1.5rem 0 1.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.22), -2px 0 12px rgba(74, 222, 128, 0.06);
+  background: var(--code-bg);
+  box-shadow: var(--shadow);
 }
 
-/* ── Header bar ── */
 .code-block__header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #080a08;
-  padding: 0.38rem 1rem;
-  border-bottom: 1px solid #1a2c1a;
-  gap: 1rem;
+  gap: 0.75rem;
+  background: var(--code-head);
+  padding: 0.5rem 0.75rem 0.5rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   user-select: none;
 }
 
+.code-block__dots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.code-block__dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .code-block__lang {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  color: #4ade80;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.75;
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #8b96ab;
+  letter-spacing: 0.04em;
 }
 
 .code-block__copy {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  color: #4ade80;
-  background: transparent;
-  border: 1px solid #2a4a2a;
-  padding: 0.17rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #c3cbd9;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
   cursor: pointer;
-  letter-spacing: 0.05em;
-  transition: all 0.15s ease;
-  opacity: 0.55;
-  border-radius: 2px;
-  line-height: 1.4;
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+}
+
+.code-block__copy svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .code-block__copy:hover {
-  opacity: 1;
-  background: rgba(74, 222, 128, 0.07);
-  border-color: #4ade80;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
 
 .code-block__copy--done {
-  opacity: 1;
-  color: #86efac;
-  border-color: #4ade80;
+  color: #22d3ee;
+  border-color: rgba(34, 211, 238, 0.4);
 }
 
-/* ── pre/code inside slot ── */
-/* Force our terminal background regardless of Shiki's inline style */
+/* Code blocks stay dark in both themes: use Shiki's dark palette regardless */
 .code-block :deep(pre) {
-  background-color: #0c0e0c !important;
+  background-color: transparent !important;
   margin: 0 !important;
   border: none !important;
   border-radius: 0 !important;
   padding: 1.1rem 1.3rem !important;
   font-size: 0.84rem !important;
-  line-height: 1.72 !important;
+  line-height: 1.7 !important;
   overflow-x: auto;
   tab-size: 2;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
 }
 
 .code-block :deep(pre code) {
@@ -115,35 +135,23 @@ async function handleCopy() {
   padding: 0 !important;
   font-size: inherit !important;
   font-family: inherit !important;
-  counter-reset: line;
 }
 
-/* Shiki token spans — let their colors through */
 .code-block :deep(pre code .line) {
   display: block;
 }
 
-/* Activate CSS-variables color mode that @nuxt/content uses */
 .code-block :deep(pre code span) {
-  color: var(--shiki-default);
+  color: var(--shiki-dark, var(--shiki-default));
   font-family: inherit;
 }
 
-/* ── Custom scrollbar ── */
 .code-block :deep(pre::-webkit-scrollbar) {
-  height: 5px;
-}
-
-.code-block :deep(pre::-webkit-scrollbar-track) {
-  background: #0c0e0c;
+  height: 6px;
 }
 
 .code-block :deep(pre::-webkit-scrollbar-thumb) {
-  background: #2a4a2a;
-  border-radius: 3px;
-}
-
-.code-block :deep(pre::-webkit-scrollbar-thumb:hover) {
-  background: #4ade80;
+  background: rgba(255, 255, 255, 0.14);
+  border: none;
 }
 </style>

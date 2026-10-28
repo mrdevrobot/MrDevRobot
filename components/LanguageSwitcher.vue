@@ -1,11 +1,12 @@
 <template>
-  <div class="language-switcher">
+  <div class="language-switcher" role="group" :aria-label="$t('nav.language')">
     <NuxtLink
       v-for="locale in availableLocales"
       :key="locale.code"
       :to="switchLocalePath(locale.code)"
       class="language-switcher__btn"
       :class="{ 'language-switcher__btn--active': locale.code === currentLocale }"
+      :aria-current="locale.code === currentLocale ? 'true' : undefined"
     >
       {{ locale.code.toUpperCase() }}
     </NuxtLink>
@@ -25,31 +26,32 @@ const availableLocales = computed(() =>
 
 <style scoped>
 .language-switcher {
-  display: flex;
-  gap: 0.2rem;
-  align-items: center;
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .language-switcher__btn {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 0.2rem 0.45rem;
-  color: #4ade80;
-  opacity: 0.45;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  color: var(--text-3);
   text-decoration: none;
-  border: 1px solid transparent;
-  transition: all 0.15s ease;
+  transition: color var(--t-fast), background var(--t-fast);
 }
 
 .language-switcher__btn:hover {
-  opacity: 0.9;
-  border-color: rgba(74, 222, 128, 0.3);
+  color: var(--text);
 }
 
 .language-switcher__btn--active {
-  opacity: 1;
-  border-color: rgba(74, 222, 128, 0.45);
+  color: var(--text);
+  background: var(--bg-elev);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 </style>

@@ -5,20 +5,20 @@
   },
   "footer": {
     "text": "© {year} Luca Fabbri · MrDevRobot",
-    "tagline": "Tech Lead · .NET · Clean Architecture · DDD · Distributed Systems"
+    "tagline": "R&D and AI Expert · .NET · Clean Architecture · DDD · Distributed Systems"
   },
   "hero": {
     "title": "Luca Fabbri",
-    "subtitle": "Tech Lead at Zucchetti Hospitality  ·  .NET  ·  Open Source  ·  class of '84",
+    "subtitle": "R&D and AI Expert  ·  .NET  ·  Open Source  ·  class of '84",
     "cta": "Read the blog"
   },
   "about": {
     "title": "About Me",
-    "intro": "Computer Engineer, born in 1984 in Rimini and now based in San Donà di Piave, Veneto. Graduated in 2010, I currently work as Tech Lead at Zucchetti Hospitality Srl, designing and building complex distributed software systems.",
+    "intro": "Computer Engineer, born in 1984 in Rimini and now based in San Donà di Piave, Veneto. Graduated in 2010, I work as an R&D and AI expert, designing and building complex distributed software systems.",
     "expertise": "My focus: .NET, Clean Architecture, Domain-Driven Design, Cloud, Mobile & Embedded, real-time distributed systems.",
     "xedotnet": "Active member of XeDotNet, the Veneto .NET developer community.",
     "opensource": "Open Source Projects",
-    "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working as a Tech Lead."
+    "blog_description": "Written entirely in English — architectural decision records, technical deep-dives, and lessons from working in R&D and AI."
   },
   "article": {
     "date": "Date",
@@ -36,9 +36,9 @@
     "readingTime": "min read"
   },
   "seo": {
-    "homeDescription": "Tech Lead and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
+    "homeDescription": "R&D and AI expert and .NET Engineer based in San Donà di Piave, Italy. Clean Architecture, DDD, Distributed Systems and Open Source. Author of BLite, EntglDb, Concordia.",
     "blogTitle": "Blog",
-    "blogDescription": "Articles on .NET, Clean Architecture, Domain-Driven Design, Distributed Systems and software engineering by Luca Fabbri, Tech Lead at Zucchetti Hospitality."
+    "blogDescription": "Articles on .NET, Clean Architecture, Domain-Driven Design, Distributed Systems and software engineering by Luca Fabbri, R&D and AI expert."
   },
   "fun": {
     "title": "Terminal Crawler",
